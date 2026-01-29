@@ -1,0 +1,27 @@
+# Docker action: pull an Overleaf project into the chosen directory.
+# Uses a small uv-based image; entrypoint is the pull script.
+name: "Overleaf Pull"
+description: "Download an Overleaf project (zip) and extract to the chosen directory."
+inputs:
+  project_id:
+    description: "Overleaf project ID"
+    required: true
+  cookie:
+    description: "Session cookie value (overleaf.sid). Use a secret (e.g. OVERLEAF_COOKIE)."
+    required: true
+  base_url:
+    description: "Overleaf base URL (e.g. https://overleaf.example.com)"
+    required: true
+  output_dir:
+    description: "Directory where to extract the project (relative to workspace)"
+    required: false
+    default: "overleaf-project"
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.project_id }}
+    - ${{ inputs.cookie }}
+    - ${{ inputs.base_url }}
+    - -o
+    - /github/workspace/${{ inputs.output_dir }}
