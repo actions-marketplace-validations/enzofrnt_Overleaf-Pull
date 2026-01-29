@@ -16,6 +16,9 @@ inputs:
     description: "Directory where to extract the project (relative to workspace)"
     required: false
     default: "overleaf-project"
+branding:
+  icon: target
+  color: green
 runs:
   using: docker
   image: Dockerfile
