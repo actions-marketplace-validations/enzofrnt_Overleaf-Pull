@@ -14,7 +14,10 @@ import requests
 
 
 def _normalize_base_url(url: str) -> str:
-    return url.rstrip("/")
+    url = url.strip().rstrip("/")
+    if url and not url.startswith(("http://", "https://")):
+        url = "https://" + url
+    return url
 
 
 def _cookie_header(cookie: str) -> str:
