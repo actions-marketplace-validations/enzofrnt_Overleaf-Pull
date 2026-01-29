@@ -17,7 +17,7 @@ inputs:
     required: false
     default: "overleaf-project"
 branding:
-  icon: target
+  icon: download
   color: green
 runs:
   using: docker
